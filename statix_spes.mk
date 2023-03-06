@@ -11,17 +11,13 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from spes/spesn device
 $(call inherit-product, device/xiaomi/spes/device.mk)
 
-# Inherit some common PixelOS stuff.
-$(call inherit-product, vendor/aosp/config/common.mk)
-
-# PixelOS Stuff
-TARGET_GAPPS_ARCH := arm64
+# Inherit some common StatiX stuff.
+$(call inherit-product, vendor/statix/config/common.mk)
+$(call inherit-product, vendor/statix/config/gsm.mk)
 TARGET_BOOT_ANIMATION_RES := 1080
-TARGET_FACE_UNLOCK_SUPPORTED := true
-TARGET_USES_AOSP_RECOVERY := true
 
 # Product Specifics
-PRODUCT_NAME := aosp_spes
+PRODUCT_NAME := statix_spes
 PRODUCT_DEVICE := spes
 PRODUCT_BRAND := Redmi
 PRODUCT_MODEL := Redmi Note 11

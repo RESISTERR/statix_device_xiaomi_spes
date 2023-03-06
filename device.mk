@@ -270,6 +270,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     vendor.google.google_battery@1.1
 
+# HALs
+PRODUCT_USES_QCOM_HARDWARE := true
+PRODUCT_BOARD_PLATFORM := bengal
+
 # Health
 ifneq ($(wildcard vendor/qcom/opensource/healthd-ext/Android.bp),)
 PRODUCT_PACKAGES += \
@@ -310,6 +314,15 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/keylayout/uinput-fpc.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/uinput-fpc.kl \
     $(LOCAL_PATH)/configs/keylayout/uinput-goodix.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/uinput-goodix.kl \
     $(LOCAL_PATH)/configs/keylayout/uinput-silead.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/uinput-silead.kl
+
+# Kernel
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)-kernel/kernel
+
+PRODUCT_COPY_FILES += \
+    $(TARGET_PREBUILT_KERNEL):kernel \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)-kernel/vendor-modules,$(TARGET_COPY_OUT_VENDOR)/lib/modules)
+
+PRODUCT_VENDOR_KERNEL_HEADERS += $(LOCAL_PATH)-kernel/kernel-headers
 
 # Keymaster
 PRODUCT_PACKAGES += \
